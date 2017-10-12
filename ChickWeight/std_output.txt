@@ -1,0 +1,2 @@
+[1] "Diet #3 seems to be the best overall judging by the mean final weight of chick"
+[1] "Diet #4 seems to be the best for short-term judging by the mean weight of chick on day 10"
