@@ -1,0 +1,208 @@
+\documentclass[unicode, notheorems]{beamer}
+
+\mode<presentation>
+{
+	\usetheme[numbers, totalnumbers, minimal]{Statmod}
+	\setbeamercovered{transparent}
+}
+
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsthm}
+
+\title[Датасет <<RoadCrash>>]{Экзаменационная работа\\{\normalsize  Датасет <<RoadCrash>>}}
+\author{Константинов Антон Владимирович, гр. 322}
+\institute[СПбГУ]{Санкт-Петербургский государственный университет \\
+	Математико-механический факультет \\
+	Кафедра статистического моделирования \\
+}
+\date{
+	Санкт-Петербург\\
+	2018 г.
+}
+
+\setbeamertemplate{navigation symbols}{}
+
+\begin{document}
+	
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\begin{frame}{Немного о данных: \textbf{gibdd}}
+	\begin{itemize}
+		\item База \textbf{gibdd} содержит карточки происшествий с сайта ГИБДД. \\
+		\item Переменные: регион; время; тип; число участников, автомобилей, пострадавших, жертв; город; адрес; краткое описание места происшествия; виновник и причина происшествия.\\
+		\item 306359 наблюдений за период с \textbf{1 января 2015} по \textbf{30 сентября 2016}.\\
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Немного о данных: \textbf{saferoads}}
+	\begin{itemize}
+		\item База \textbf{saferoads} содержит карточки происшествий с сайта <<Безопасные Дороги>>.
+		\item Переменные: время; тип; число участников, автомобилей, пострадавших, жертв; координаты места происшествия; дефекты дорожного покрытия; освещенность места происшествия; краткая сводка об участниках: пол, дата рождения, опыт вождения. \\
+		\item 145604 наблюдения за период с \textbf{1 января 2015} по \textbf{31 августа 2016}.
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Распределение числа аварий в году}
+	\begin{center}
+		\includegraphics[scale=0.4]{img/accidents_by_month}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Аварии по дням недели}
+	\begin{center}
+		\includegraphics[scale=0.4]{img/accidents_by_weekday}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Города с наибольшим числом зафиксированных аварий}
+	\begin{center}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			%1 & Москва & 15785 \\ \hline
+			%2 & Санкт-Петербург & 9867 \\ \hline
+			3 & Омск & 4262 \\ \hline
+			4 & Казань & 3456 \\ \hline
+			5 & Пермь & 3434 \\ \hline
+			6 & Нижний Новгород & 3411 \\ \hline
+			7 & Красноярск & 3238 \\ \hline
+			8 & Челябинск & 3199 \\ \hline
+			9 & Ростов-на-Дону & 2943 \\ \hline
+			10 & Новосибирск & 2923 \\ \hline
+			11 & Барнаул & 2544 \\ \hline
+			12 & Тюмень & 2483 \\ \hline
+		\end{tabular}
+	\end{center}
+	\begin{itemize}
+		\item Москва и Санкт-Петербург исключены как очевидные выбросы.
+		\item Все города кроме Барнаула и Тюмени --- миллионеры.
+		\item Омск заметно выделяется по числу аварий. 
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Влияние дефектов покрытия}
+	\includegraphics[scale=0.49]{img/road_quality}
+\end{frame}
+
+\begin{frame}{Типы аварий}
+	\includegraphics[scale=0.4]{img/accidents_by_type}
+\end{frame}
+
+\begin{frame}{Столкновения и наезды на пешеходов}
+	\includegraphics[scale=0.44]{img/crashes_and_runovers_by_month}
+\end{frame}
+
+\begin{frame}{Типы аварий cont'd}
+	\begin{itemize}
+		\item Подавляющее большинство происшествий --- это столкновения и наезды на пешеходов. Они в значительной степени 	 определяют форму графика числа аварий по месяцам.
+		\item Нередки съезды с дороги, опрокидывания, наезды на препятствия и стоящие ТС --- аварии, которые происходят по невнимательности и неаккуратности водителя.
+		\item Интересно посмотреть, влияет ли как-то на это время суток и освещённость.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Невнимательность $\times$ время суток и освещённость}
+	\includegraphics[scale=0.40]{img/selffaults_by_light_condition}
+\end{frame}
+
+\begin{frame}{Невнимательность $\times$ время суток и освещённость cont'd}
+	\begin{itemize}
+		\item Самое большое число --- в светлое время суток. Очевидно, в это время наблюдается значительно большее число автомобилей, чем в тёмное.
+		\item Чётко прослеживается зависимость между наличием освещения и числом аварий.
+		\item Забавная погрешность: при имеющемся, но выключенном освещении аварий меньше, чем при отсутствующем совершенно.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Места происшествий}
+	\includegraphics[scale=0.4]{img/accidents_by_place}
+\end{frame}
+
+\begin{frame}{Места происшествий cont'd}
+	\begin{itemize}
+		\item Больше половины аварий происходит на перегонах --- местах, где движение свободно, и его скорость достаточно высока.
+		\item Пешеходные переходы: наезды заметно чаще происходят на нерегулируемых.
+		\item Нерегулируемые перекрёстки: аварии значительно чаще происходят на пересечении неравнозначных улиц, чем равнозначных.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Пешеходные переходы: виновники}
+	\includegraphics[scale=0.5]{img/fault_in_crosswalk_accidents}
+\end{frame}
+
+\begin{frame}{Пешеходные переходы: виновники cont'd}
+	\begin{itemize}
+		\item В наездах на пешеходов, как известно, почти всегда признаётся виновным водитель --- как человек, управляющий (согласно российскому законодательству) <<источником повышенной опасности>>.
+		\item На нерегулируемых пешеходных переходах это проявляется особо ярко.
+		\item В происшествиях на регулируемых переходах водителям часто удаётся доказать свою невиновность.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Нерегулируемые перекрёстки}
+	\includegraphics[scale=0.44]{img/reasons_of_crossing_crashes}
+\end{frame}
+
+\begin{frame}{Крупные аварии (5 и более жертв)}
+	\begin{block}{Предположение}
+		Обычно происходят на трассах.
+	\end{block}
+	\begin{center}
+		\includegraphics[scale=0.35]{img/accidents_on_highways}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Крупные аварии на карте}
+	\begin{center}
+		\includegraphics[scale=0.42]{img/major_accidents_map}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Крупные аварии: типы}
+	\includegraphics[scale=0.43]{img/accidents_on_highways_types}
+\end{frame}
+
+\begin{frame}{Крупные аварии: число автомобилей}
+	\begin{center}
+		\includegraphics[scale=0.4]{img/major_accidents_by_number_of_vehicles}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Крупные аварии: наиболее распространённые причины}
+	\includegraphics[scale=0.43]{img/accidents_on_highways_reasons}
+\end{frame}
+
+\begin{frame}{Наезды на животных: в целом}
+	\begin{center}
+		\includegraphics[scale=0.38]{img/animal_runovers_total}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Наезды на животных: Северо-Запад}
+	\begin{center}
+		\includegraphics[scale=0.38]{img/animal_runovers_nw}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Наезды на животных: Центр}
+	\begin{center}
+		\includegraphics[scale=0.38]{img/animal_runovers_center}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Наезды на животных: Юг}
+	\begin{center}
+		\includegraphics[scale=0.38]{img/animal_runovers_south}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Наезды на животных cont'd}
+	\begin{itemize}
+		\item Почти все наезды происходят на крупных трассах.
+		\item Трассы <<Брянск --- Смоленск>>, <<Смоленск --- Москва>> часто фигурируют в новостных сводках как магистрали с большим числом выходов диких лосей на проезжую часть.
+		\item Трасса <<Астрахань --- Ставрополь>> славится бесконтрольно выпасаемым скотом в районе Элисты.
+	\end{itemize}
+\end{frame}
+
+\end{document}
